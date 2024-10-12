@@ -1,0 +1,1 @@
+final String TRIP_LOCAL_STORAGE_KEY = "my_trips";
