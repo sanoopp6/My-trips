@@ -12,8 +12,11 @@ class Trip with _$Trip {
   factory Trip({
     @HiveField(0) String? id,
     @HiveField(1) @Default('') String startLocName,
-    @HiveField(2) @Default(0) double startLoclatitude,
-    @HiveField(3) @Default(0) double startLoclongitude,
+    @HiveField(2) @Default(0) double startLocLatitude,
+    @HiveField(3) @Default(0) double startLocLongitude,
+    @HiveField(4) @Default('') String endLocName,
+    @HiveField(5) @Default(0) double endLocLatitude,
+    @HiveField(6) @Default(0) double endLocLongitude,
   }) = _Trip;
 
   factory Trip.fromJson(dynamic json) => _$TripFromJson(json);

@@ -1,7 +1,6 @@
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart';
 import 'package:mytrips/shared/domain/models/trip/trip_model.dart';
 
 enum AppEnvironment { DEV, PROD }
@@ -18,7 +17,7 @@ abstract class EnvInfo {
         ? ".env.production"
         : ".env.development";
     await dotenv.load(fileName: envFile);
-    MapboxOptions.setAccessToken(mapKey);
+    // MapboxOptions.setAccessToken(mapKey);
     await Hive.initFlutter();
     Hive.registerAdapter(TripAdapter());
   }

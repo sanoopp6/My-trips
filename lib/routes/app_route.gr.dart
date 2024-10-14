@@ -8,16 +8,20 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i3;
+import 'package:auto_route/auto_route.dart' as _i4;
+import 'package:flutter/material.dart' as _i5;
 import 'package:mytrips/features/home/presentation/screens/home_screen.dart'
     as _i1;
-import 'package:mytrips/features/splash/presentation/screens/splash.dart'
+import 'package:mytrips/features/navigation/presentation/screens/navigation_screen.dart'
     as _i2;
+import 'package:mytrips/features/splash/presentation/screens/splash.dart'
+    as _i3;
+import 'package:mytrips/shared/domain/models/trip/trip_model.dart' as _i6;
 
 /// generated route for
 /// [_i1.HomeScreen]
-class HomeRoute extends _i3.PageRouteInfo<void> {
-  const HomeRoute({List<_i3.PageRouteInfo>? children})
+class HomeRoute extends _i4.PageRouteInfo<void> {
+  const HomeRoute({List<_i4.PageRouteInfo>? children})
       : super(
           HomeRoute.name,
           initialChildren: children,
@@ -25,7 +29,7 @@ class HomeRoute extends _i3.PageRouteInfo<void> {
 
   static const String name = 'HomeRoute';
 
-  static _i3.PageInfo page = _i3.PageInfo(
+  static _i4.PageInfo page = _i4.PageInfo(
     name,
     builder: (data) {
       return const _i1.HomeScreen();
@@ -34,9 +38,55 @@ class HomeRoute extends _i3.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i2.SplashScreen]
-class SplashRoute extends _i3.PageRouteInfo<void> {
-  const SplashRoute({List<_i3.PageRouteInfo>? children})
+/// [_i2.NavigationScreen]
+class NavigationRoute extends _i4.PageRouteInfo<NavigationRouteArgs> {
+  NavigationRoute({
+    _i5.Key? key,
+    required _i6.Trip trip,
+    List<_i4.PageRouteInfo>? children,
+  }) : super(
+          NavigationRoute.name,
+          args: NavigationRouteArgs(
+            key: key,
+            trip: trip,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'NavigationRoute';
+
+  static _i4.PageInfo page = _i4.PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<NavigationRouteArgs>();
+      return _i2.NavigationScreen(
+        key: args.key,
+        trip: args.trip,
+      );
+    },
+  );
+}
+
+class NavigationRouteArgs {
+  const NavigationRouteArgs({
+    this.key,
+    required this.trip,
+  });
+
+  final _i5.Key? key;
+
+  final _i6.Trip trip;
+
+  @override
+  String toString() {
+    return 'NavigationRouteArgs{key: $key, trip: $trip}';
+  }
+}
+
+/// generated route for
+/// [_i3.SplashScreen]
+class SplashRoute extends _i4.PageRouteInfo<void> {
+  const SplashRoute({List<_i4.PageRouteInfo>? children})
       : super(
           SplashRoute.name,
           initialChildren: children,
@@ -44,10 +94,10 @@ class SplashRoute extends _i3.PageRouteInfo<void> {
 
   static const String name = 'SplashRoute';
 
-  static _i3.PageInfo page = _i3.PageInfo(
+  static _i4.PageInfo page = _i4.PageInfo(
     name,
     builder: (data) {
-      return const _i2.SplashScreen();
+      return const _i3.SplashScreen();
     },
   );
 }

@@ -33,4 +33,7 @@ class AppTextStyles {
 
   static TextStyle veryLarge =
   GoogleFonts.poppins(fontSize: 42, fontWeight: FontWeight.w800);
+
+  static TextStyle largeMedium =
+  GoogleFonts.poppins(fontSize: 24, fontWeight: FontWeight.normal);
 }
