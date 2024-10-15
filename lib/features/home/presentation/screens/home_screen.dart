@@ -406,6 +406,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                           snapshotImage = Image.memory(snapshot);
                         });
                       }
+                      
                       snapshotting = false;
 
                       if (snapshotImage != null) {
