@@ -43,12 +43,14 @@ class NavigationRoute extends _i4.PageRouteInfo<NavigationRouteArgs> {
   NavigationRoute({
     _i5.Key? key,
     required _i6.Trip trip,
+    required _i5.Image navigationImage,
     List<_i4.PageRouteInfo>? children,
   }) : super(
           NavigationRoute.name,
           args: NavigationRouteArgs(
             key: key,
             trip: trip,
+            navigationImage: navigationImage,
           ),
           initialChildren: children,
         );
@@ -62,6 +64,7 @@ class NavigationRoute extends _i4.PageRouteInfo<NavigationRouteArgs> {
       return _i2.NavigationScreen(
         key: args.key,
         trip: args.trip,
+        navigationImage: args.navigationImage,
       );
     },
   );
@@ -71,15 +74,18 @@ class NavigationRouteArgs {
   const NavigationRouteArgs({
     this.key,
     required this.trip,
+    required this.navigationImage,
   });
 
   final _i5.Key? key;
 
   final _i6.Trip trip;
 
+  final _i5.Image navigationImage;
+
   @override
   String toString() {
-    return 'NavigationRouteArgs{key: $key, trip: $trip}';
+    return 'NavigationRouteArgs{key: $key, trip: $trip, navigationImage: $navigationImage}';
   }
 }
 

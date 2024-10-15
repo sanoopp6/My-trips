@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class BackButton extends ConsumerWidget {
+class CustomBackButton extends ConsumerWidget {
   final VoidCallback onPressed;
 
-  const BackButton({super.key, required this.onPressed});
+  const CustomBackButton({super.key, required this.onPressed});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

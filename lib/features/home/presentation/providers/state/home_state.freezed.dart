@@ -20,18 +20,21 @@ mixin _$HomeState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
+    required TResult Function(List<TripLocation> routes) routeFetched,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
+    TResult? Function(List<TripLocation> routes)? routeFetched,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
+    TResult Function(List<TripLocation> routes)? routeFetched,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -39,18 +42,21 @@ mixin _$HomeState {
   TResult map<TResult extends Object?>({
     required TResult Function(Initial value) initial,
     required TResult Function(Loading value) loading,
+    required TResult Function(RouteFetched value) routeFetched,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Initial value)? initial,
     TResult? Function(Loading value)? loading,
+    TResult? Function(RouteFetched value)? routeFetched,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Initial value)? initial,
     TResult Function(Loading value)? loading,
+    TResult Function(RouteFetched value)? routeFetched,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -119,6 +125,7 @@ class _$InitialImpl implements Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
+    required TResult Function(List<TripLocation> routes) routeFetched,
   }) {
     return initial();
   }
@@ -128,6 +135,7 @@ class _$InitialImpl implements Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
+    TResult? Function(List<TripLocation> routes)? routeFetched,
   }) {
     return initial?.call();
   }
@@ -137,6 +145,7 @@ class _$InitialImpl implements Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
+    TResult Function(List<TripLocation> routes)? routeFetched,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -150,6 +159,7 @@ class _$InitialImpl implements Initial {
   TResult map<TResult extends Object?>({
     required TResult Function(Initial value) initial,
     required TResult Function(Loading value) loading,
+    required TResult Function(RouteFetched value) routeFetched,
   }) {
     return initial(this);
   }
@@ -159,6 +169,7 @@ class _$InitialImpl implements Initial {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Initial value)? initial,
     TResult? Function(Loading value)? loading,
+    TResult? Function(RouteFetched value)? routeFetched,
   }) {
     return initial?.call(this);
   }
@@ -168,6 +179,7 @@ class _$InitialImpl implements Initial {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Initial value)? initial,
     TResult Function(Loading value)? loading,
+    TResult Function(RouteFetched value)? routeFetched,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -224,6 +236,7 @@ class _$LoadingImpl implements Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
+    required TResult Function(List<TripLocation> routes) routeFetched,
   }) {
     return loading();
   }
@@ -233,6 +246,7 @@ class _$LoadingImpl implements Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
+    TResult? Function(List<TripLocation> routes)? routeFetched,
   }) {
     return loading?.call();
   }
@@ -242,6 +256,7 @@ class _$LoadingImpl implements Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
+    TResult Function(List<TripLocation> routes)? routeFetched,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -255,6 +270,7 @@ class _$LoadingImpl implements Loading {
   TResult map<TResult extends Object?>({
     required TResult Function(Initial value) initial,
     required TResult Function(Loading value) loading,
+    required TResult Function(RouteFetched value) routeFetched,
   }) {
     return loading(this);
   }
@@ -264,6 +280,7 @@ class _$LoadingImpl implements Loading {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Initial value)? initial,
     TResult? Function(Loading value)? loading,
+    TResult? Function(RouteFetched value)? routeFetched,
   }) {
     return loading?.call(this);
   }
@@ -273,6 +290,7 @@ class _$LoadingImpl implements Loading {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Initial value)? initial,
     TResult Function(Loading value)? loading,
+    TResult Function(RouteFetched value)? routeFetched,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -284,4 +302,157 @@ class _$LoadingImpl implements Loading {
 
 abstract class Loading implements HomeState {
   const factory Loading() = _$LoadingImpl;
+}
+
+/// @nodoc
+abstract class _$$RouteFetchedImplCopyWith<$Res> {
+  factory _$$RouteFetchedImplCopyWith(
+          _$RouteFetchedImpl value, $Res Function(_$RouteFetchedImpl) then) =
+      __$$RouteFetchedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<TripLocation> routes});
+}
+
+/// @nodoc
+class __$$RouteFetchedImplCopyWithImpl<$Res>
+    extends _$HomeStateCopyWithImpl<$Res, _$RouteFetchedImpl>
+    implements _$$RouteFetchedImplCopyWith<$Res> {
+  __$$RouteFetchedImplCopyWithImpl(
+      _$RouteFetchedImpl _value, $Res Function(_$RouteFetchedImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of HomeState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? routes = null,
+  }) {
+    return _then(_$RouteFetchedImpl(
+      null == routes
+          ? _value._routes
+          : routes // ignore: cast_nullable_to_non_nullable
+              as List<TripLocation>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$RouteFetchedImpl implements RouteFetched {
+  const _$RouteFetchedImpl(final List<TripLocation> routes) : _routes = routes;
+
+  final List<TripLocation> _routes;
+  @override
+  List<TripLocation> get routes {
+    if (_routes is EqualUnmodifiableListView) return _routes;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_routes);
+  }
+
+  @override
+  String toString() {
+    return 'HomeState.routeFetched(routes: $routes)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$RouteFetchedImpl &&
+            const DeepCollectionEquality().equals(other._routes, _routes));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_routes));
+
+  /// Create a copy of HomeState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$RouteFetchedImplCopyWith<_$RouteFetchedImpl> get copyWith =>
+      __$$RouteFetchedImplCopyWithImpl<_$RouteFetchedImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(List<TripLocation> routes) routeFetched,
+  }) {
+    return routeFetched(routes);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(List<TripLocation> routes)? routeFetched,
+  }) {
+    return routeFetched?.call(routes);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(List<TripLocation> routes)? routeFetched,
+    required TResult orElse(),
+  }) {
+    if (routeFetched != null) {
+      return routeFetched(routes);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Initial value) initial,
+    required TResult Function(Loading value) loading,
+    required TResult Function(RouteFetched value) routeFetched,
+  }) {
+    return routeFetched(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(Initial value)? initial,
+    TResult? Function(Loading value)? loading,
+    TResult? Function(RouteFetched value)? routeFetched,
+  }) {
+    return routeFetched?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Initial value)? initial,
+    TResult Function(Loading value)? loading,
+    TResult Function(RouteFetched value)? routeFetched,
+    required TResult orElse(),
+  }) {
+    if (routeFetched != null) {
+      return routeFetched(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class RouteFetched implements HomeState {
+  const factory RouteFetched(final List<TripLocation> routes) =
+      _$RouteFetchedImpl;
+
+  List<TripLocation> get routes;
+
+  /// Create a copy of HomeState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$RouteFetchedImplCopyWith<_$RouteFetchedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

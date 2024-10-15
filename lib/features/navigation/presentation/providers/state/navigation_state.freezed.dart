@@ -23,6 +23,7 @@ mixin _$NavigationState {
     required TResult Function() failure,
     required TResult Function() success,
     required TResult Function() saved,
+    required TResult Function(dynamic routeData) routeFetched,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -32,6 +33,7 @@ mixin _$NavigationState {
     TResult? Function()? failure,
     TResult? Function()? success,
     TResult? Function()? saved,
+    TResult? Function(dynamic routeData)? routeFetched,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -41,6 +43,7 @@ mixin _$NavigationState {
     TResult Function()? failure,
     TResult Function()? success,
     TResult Function()? saved,
+    TResult Function(dynamic routeData)? routeFetched,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -51,6 +54,7 @@ mixin _$NavigationState {
     required TResult Function(Failure value) failure,
     required TResult Function(Success value) success,
     required TResult Function(Saved value) saved,
+    required TResult Function(RouteFetched value) routeFetched,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -60,6 +64,7 @@ mixin _$NavigationState {
     TResult? Function(Failure value)? failure,
     TResult? Function(Success value)? success,
     TResult? Function(Saved value)? saved,
+    TResult? Function(RouteFetched value)? routeFetched,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -69,6 +74,7 @@ mixin _$NavigationState {
     TResult Function(Failure value)? failure,
     TResult Function(Success value)? success,
     TResult Function(Saved value)? saved,
+    TResult Function(RouteFetched value)? routeFetched,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -141,6 +147,7 @@ class _$InitialImpl implements Initial {
     required TResult Function() failure,
     required TResult Function() success,
     required TResult Function() saved,
+    required TResult Function(dynamic routeData) routeFetched,
   }) {
     return initial();
   }
@@ -153,6 +160,7 @@ class _$InitialImpl implements Initial {
     TResult? Function()? failure,
     TResult? Function()? success,
     TResult? Function()? saved,
+    TResult? Function(dynamic routeData)? routeFetched,
   }) {
     return initial?.call();
   }
@@ -165,6 +173,7 @@ class _$InitialImpl implements Initial {
     TResult Function()? failure,
     TResult Function()? success,
     TResult Function()? saved,
+    TResult Function(dynamic routeData)? routeFetched,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -181,6 +190,7 @@ class _$InitialImpl implements Initial {
     required TResult Function(Failure value) failure,
     required TResult Function(Success value) success,
     required TResult Function(Saved value) saved,
+    required TResult Function(RouteFetched value) routeFetched,
   }) {
     return initial(this);
   }
@@ -193,6 +203,7 @@ class _$InitialImpl implements Initial {
     TResult? Function(Failure value)? failure,
     TResult? Function(Success value)? success,
     TResult? Function(Saved value)? saved,
+    TResult? Function(RouteFetched value)? routeFetched,
   }) {
     return initial?.call(this);
   }
@@ -205,6 +216,7 @@ class _$InitialImpl implements Initial {
     TResult Function(Failure value)? failure,
     TResult Function(Success value)? success,
     TResult Function(Saved value)? saved,
+    TResult Function(RouteFetched value)? routeFetched,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -264,6 +276,7 @@ class _$LoadingImpl implements Loading {
     required TResult Function() failure,
     required TResult Function() success,
     required TResult Function() saved,
+    required TResult Function(dynamic routeData) routeFetched,
   }) {
     return loading();
   }
@@ -276,6 +289,7 @@ class _$LoadingImpl implements Loading {
     TResult? Function()? failure,
     TResult? Function()? success,
     TResult? Function()? saved,
+    TResult? Function(dynamic routeData)? routeFetched,
   }) {
     return loading?.call();
   }
@@ -288,6 +302,7 @@ class _$LoadingImpl implements Loading {
     TResult Function()? failure,
     TResult Function()? success,
     TResult Function()? saved,
+    TResult Function(dynamic routeData)? routeFetched,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -304,6 +319,7 @@ class _$LoadingImpl implements Loading {
     required TResult Function(Failure value) failure,
     required TResult Function(Success value) success,
     required TResult Function(Saved value) saved,
+    required TResult Function(RouteFetched value) routeFetched,
   }) {
     return loading(this);
   }
@@ -316,6 +332,7 @@ class _$LoadingImpl implements Loading {
     TResult? Function(Failure value)? failure,
     TResult? Function(Success value)? success,
     TResult? Function(Saved value)? saved,
+    TResult? Function(RouteFetched value)? routeFetched,
   }) {
     return loading?.call(this);
   }
@@ -328,6 +345,7 @@ class _$LoadingImpl implements Loading {
     TResult Function(Failure value)? failure,
     TResult Function(Success value)? success,
     TResult Function(Saved value)? saved,
+    TResult Function(RouteFetched value)? routeFetched,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -387,6 +405,7 @@ class _$FailureImpl implements Failure {
     required TResult Function() failure,
     required TResult Function() success,
     required TResult Function() saved,
+    required TResult Function(dynamic routeData) routeFetched,
   }) {
     return failure();
   }
@@ -399,6 +418,7 @@ class _$FailureImpl implements Failure {
     TResult? Function()? failure,
     TResult? Function()? success,
     TResult? Function()? saved,
+    TResult? Function(dynamic routeData)? routeFetched,
   }) {
     return failure?.call();
   }
@@ -411,6 +431,7 @@ class _$FailureImpl implements Failure {
     TResult Function()? failure,
     TResult Function()? success,
     TResult Function()? saved,
+    TResult Function(dynamic routeData)? routeFetched,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -427,6 +448,7 @@ class _$FailureImpl implements Failure {
     required TResult Function(Failure value) failure,
     required TResult Function(Success value) success,
     required TResult Function(Saved value) saved,
+    required TResult Function(RouteFetched value) routeFetched,
   }) {
     return failure(this);
   }
@@ -439,6 +461,7 @@ class _$FailureImpl implements Failure {
     TResult? Function(Failure value)? failure,
     TResult? Function(Success value)? success,
     TResult? Function(Saved value)? saved,
+    TResult? Function(RouteFetched value)? routeFetched,
   }) {
     return failure?.call(this);
   }
@@ -451,6 +474,7 @@ class _$FailureImpl implements Failure {
     TResult Function(Failure value)? failure,
     TResult Function(Success value)? success,
     TResult Function(Saved value)? saved,
+    TResult Function(RouteFetched value)? routeFetched,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -510,6 +534,7 @@ class _$SuccessImpl implements Success {
     required TResult Function() failure,
     required TResult Function() success,
     required TResult Function() saved,
+    required TResult Function(dynamic routeData) routeFetched,
   }) {
     return success();
   }
@@ -522,6 +547,7 @@ class _$SuccessImpl implements Success {
     TResult? Function()? failure,
     TResult? Function()? success,
     TResult? Function()? saved,
+    TResult? Function(dynamic routeData)? routeFetched,
   }) {
     return success?.call();
   }
@@ -534,6 +560,7 @@ class _$SuccessImpl implements Success {
     TResult Function()? failure,
     TResult Function()? success,
     TResult Function()? saved,
+    TResult Function(dynamic routeData)? routeFetched,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -550,6 +577,7 @@ class _$SuccessImpl implements Success {
     required TResult Function(Failure value) failure,
     required TResult Function(Success value) success,
     required TResult Function(Saved value) saved,
+    required TResult Function(RouteFetched value) routeFetched,
   }) {
     return success(this);
   }
@@ -562,6 +590,7 @@ class _$SuccessImpl implements Success {
     TResult? Function(Failure value)? failure,
     TResult? Function(Success value)? success,
     TResult? Function(Saved value)? saved,
+    TResult? Function(RouteFetched value)? routeFetched,
   }) {
     return success?.call(this);
   }
@@ -574,6 +603,7 @@ class _$SuccessImpl implements Success {
     TResult Function(Failure value)? failure,
     TResult Function(Success value)? success,
     TResult Function(Saved value)? saved,
+    TResult Function(RouteFetched value)? routeFetched,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -633,6 +663,7 @@ class _$SavedImpl implements Saved {
     required TResult Function() failure,
     required TResult Function() success,
     required TResult Function() saved,
+    required TResult Function(dynamic routeData) routeFetched,
   }) {
     return saved();
   }
@@ -645,6 +676,7 @@ class _$SavedImpl implements Saved {
     TResult? Function()? failure,
     TResult? Function()? success,
     TResult? Function()? saved,
+    TResult? Function(dynamic routeData)? routeFetched,
   }) {
     return saved?.call();
   }
@@ -657,6 +689,7 @@ class _$SavedImpl implements Saved {
     TResult Function()? failure,
     TResult Function()? success,
     TResult Function()? saved,
+    TResult Function(dynamic routeData)? routeFetched,
     required TResult orElse(),
   }) {
     if (saved != null) {
@@ -673,6 +706,7 @@ class _$SavedImpl implements Saved {
     required TResult Function(Failure value) failure,
     required TResult Function(Success value) success,
     required TResult Function(Saved value) saved,
+    required TResult Function(RouteFetched value) routeFetched,
   }) {
     return saved(this);
   }
@@ -685,6 +719,7 @@ class _$SavedImpl implements Saved {
     TResult? Function(Failure value)? failure,
     TResult? Function(Success value)? success,
     TResult? Function(Saved value)? saved,
+    TResult? Function(RouteFetched value)? routeFetched,
   }) {
     return saved?.call(this);
   }
@@ -697,6 +732,7 @@ class _$SavedImpl implements Saved {
     TResult Function(Failure value)? failure,
     TResult Function(Success value)? success,
     TResult Function(Saved value)? saved,
+    TResult Function(RouteFetched value)? routeFetched,
     required TResult orElse(),
   }) {
     if (saved != null) {
@@ -708,4 +744,169 @@ class _$SavedImpl implements Saved {
 
 abstract class Saved implements NavigationState {
   const factory Saved() = _$SavedImpl;
+}
+
+/// @nodoc
+abstract class _$$RouteFetchedImplCopyWith<$Res> {
+  factory _$$RouteFetchedImplCopyWith(
+          _$RouteFetchedImpl value, $Res Function(_$RouteFetchedImpl) then) =
+      __$$RouteFetchedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({dynamic routeData});
+}
+
+/// @nodoc
+class __$$RouteFetchedImplCopyWithImpl<$Res>
+    extends _$NavigationStateCopyWithImpl<$Res, _$RouteFetchedImpl>
+    implements _$$RouteFetchedImplCopyWith<$Res> {
+  __$$RouteFetchedImplCopyWithImpl(
+      _$RouteFetchedImpl _value, $Res Function(_$RouteFetchedImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of NavigationState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? routeData = freezed,
+  }) {
+    return _then(_$RouteFetchedImpl(
+      freezed == routeData
+          ? _value.routeData
+          : routeData // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$RouteFetchedImpl implements RouteFetched {
+  const _$RouteFetchedImpl(this.routeData);
+
+  @override
+  final dynamic routeData;
+
+  @override
+  String toString() {
+    return 'NavigationState.routeFetched(routeData: $routeData)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$RouteFetchedImpl &&
+            const DeepCollectionEquality().equals(other.routeData, routeData));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(routeData));
+
+  /// Create a copy of NavigationState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$RouteFetchedImplCopyWith<_$RouteFetchedImpl> get copyWith =>
+      __$$RouteFetchedImplCopyWithImpl<_$RouteFetchedImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() failure,
+    required TResult Function() success,
+    required TResult Function() saved,
+    required TResult Function(dynamic routeData) routeFetched,
+  }) {
+    return routeFetched(routeData);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? failure,
+    TResult? Function()? success,
+    TResult? Function()? saved,
+    TResult? Function(dynamic routeData)? routeFetched,
+  }) {
+    return routeFetched?.call(routeData);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? failure,
+    TResult Function()? success,
+    TResult Function()? saved,
+    TResult Function(dynamic routeData)? routeFetched,
+    required TResult orElse(),
+  }) {
+    if (routeFetched != null) {
+      return routeFetched(routeData);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Initial value) initial,
+    required TResult Function(Loading value) loading,
+    required TResult Function(Failure value) failure,
+    required TResult Function(Success value) success,
+    required TResult Function(Saved value) saved,
+    required TResult Function(RouteFetched value) routeFetched,
+  }) {
+    return routeFetched(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(Initial value)? initial,
+    TResult? Function(Loading value)? loading,
+    TResult? Function(Failure value)? failure,
+    TResult? Function(Success value)? success,
+    TResult? Function(Saved value)? saved,
+    TResult? Function(RouteFetched value)? routeFetched,
+  }) {
+    return routeFetched?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Initial value)? initial,
+    TResult Function(Loading value)? loading,
+    TResult Function(Failure value)? failure,
+    TResult Function(Success value)? success,
+    TResult Function(Saved value)? saved,
+    TResult Function(RouteFetched value)? routeFetched,
+    required TResult orElse(),
+  }) {
+    if (routeFetched != null) {
+      return routeFetched(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class RouteFetched implements NavigationState {
+  const factory RouteFetched(final dynamic routeData) = _$RouteFetchedImpl;
+
+  dynamic get routeData;
+
+  /// Create a copy of NavigationState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$RouteFetchedImplCopyWith<_$RouteFetchedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

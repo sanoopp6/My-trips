@@ -13,4 +13,5 @@ abstract class NavigationState with _$NavigationState {
   const factory NavigationState.success() = Success;
 
   const factory NavigationState.saved() = Saved;
+  const factory NavigationState.routeFetched(dynamic routeData) = RouteFetched;
 }
