@@ -1,3 +1,5 @@
+import 'package:mytrips/shared/domain/models/trip/trip_model.dart';
+
 abstract class StorageService {
   void init();
 
@@ -7,7 +9,7 @@ abstract class StorageService {
 
   Future<Object?> get(String key);
 
-  Future<bool> set(String key, String data);
+  Future<void> set(String key, Trip data);
 
   Future<void> clear();
 

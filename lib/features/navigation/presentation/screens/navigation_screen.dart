@@ -3,10 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:mytrips/features/history/presentation/providers/trip_history_state_providers.dart';
 import 'package:mytrips/features/home/presentation/widgets/navigation_button.dart';
 import 'package:mytrips/features/navigation/presentation/providers/navigation_state_providers.dart';
 import 'package:mytrips/features/navigation/presentation/providers/state/navigation_state.dart';
+import 'package:mytrips/services/trip_cache_service/domain/providers/trip_provider.dart';
 import 'package:mytrips/shared/domain/models/trip/trip_model.dart';
+import 'package:mytrips/shared/domain/providers/trip_storage_service_provider.dart';
 import 'package:mytrips/shared/extensions/build_context_extensions.dart';
 import 'package:mytrips/shared/theme/text_styles.dart';
 import 'package:mytrips/shared/widgets/back_button.dart';
@@ -126,7 +129,14 @@ class _NavigationScreenState extends ConsumerState<NavigationScreen> {
           color: Colors.blue,
           child: Center(
             child: NavigationButton(
-              onPressed: () {},
+              onPressed: () {
+                ref.read(tripHistoryStateNotifierProvider.notifier).saveTrip(widget.trip);
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    content: Text(
+                      "Trip stored successfully!",
+                      style: AppTextStyles.body,
+                    )));
+              },
               text: "Save",
             ),
           ),

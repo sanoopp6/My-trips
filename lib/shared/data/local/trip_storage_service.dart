@@ -42,8 +42,7 @@ class TripStorageService implements StorageService {
   }
 
   @override
-  Future<bool> set(String key, String data) {
-    // TODO: implement set
-    throw UnimplementedError();
+  Future<void> set(String key, Trip data) async {
+    await tripBox?.add(data);
   }
 }

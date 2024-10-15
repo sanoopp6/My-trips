@@ -406,7 +406,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                           snapshotImage = Image.memory(snapshot);
                         });
                       }
-                      
+
                       snapshotting = false;
 
                       if (snapshotImage != null) {
@@ -421,7 +421,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 const SizedBox(
                   width: 20,
                 ),
-                NavigationButton(onPressed: () {}, text: "Saved Trips"),
+                NavigationButton(onPressed: () {
+                  AutoRouter.of(context).push(const TripHistoryRoute());
+                }, text: "Saved Trips"),
               ],
             ))
       ]),

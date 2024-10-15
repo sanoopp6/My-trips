@@ -15,11 +15,10 @@ class NavigationStateNotifier extends StateNotifier<NavigationState> {
   Future<void> getRoute(
       {required TripLocation startLocation,
       required TripLocation endLocation}) async {
-    state = const NavigationState.loading();
 
+    state = const NavigationState.loading();
     final response = await navigationRepository.getRoute(
         startLocation: startLocation, endLocation: endLocation);
-
     state = NavigationState.routeFetched(response);
   }
 }
