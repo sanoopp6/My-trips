@@ -8,9 +8,12 @@ import 'package:geolocator/geolocator.dart' as geoLocator;
 
 // import 'package:latlong2/latlong.dart';
 import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart';
+import 'package:mapbox_search/mapbox_search.dart';
+import 'package:mytrips/features/home/presentation/providers/home_state_providers.dart';
 import 'package:mytrips/features/home/presentation/widgets/navigation_button.dart';
 import 'package:mytrips/main/app_env.dart';
 import 'package:mytrips/routes/app_route.gr.dart';
+import 'package:mytrips/shared/domain/models/TripLocation/trip_location_model.dart';
 import 'package:mytrips/shared/domain/models/trip/trip_model.dart';
 import 'package:mytrips/shared/extensions/build_context_extensions.dart';
 import 'package:mytrips/shared/theme/text_styles.dart';
@@ -26,16 +29,21 @@ class HomeScreen extends ConsumerStatefulWidget {
 }
 
 class _HomeScreenState extends ConsumerState<HomeScreen> {
-  TextEditingController _startLocationController = TextEditingController();
-  TextEditingController _endLocationController = TextEditingController();
-
-  var isLight = true;
+  TextEditingController startLocationController = TextEditingController();
+  TextEditingController endLocationController = TextEditingController();
+  TripLocation? startLocation;
+  TripLocation? endLocation;
+  var placesService = GeoCoding(
+      country: "IN",
+      limit: 5,
+      types: [PlaceType.place, PlaceType.address, PlaceType.locality]);
 
   MapboxMap? mapboxMap;
-  geoLocator.Position? _currentPosition;
 
   _onMapCreated(MapboxMap mapboxMap) {
     this.mapboxMap = mapboxMap;
+    setLocationComponent();
+    _getCurrentLocation();
   }
 
   Future<void> _getCurrentLocation() async {
@@ -62,19 +70,34 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     geoLocator.Position position =
         await geoLocator.Geolocator.getCurrentPosition();
 
-    setState(() {
-      _currentPosition = position;
-    });
+    mapboxMap?.easeTo(
+        CameraOptions(
+            center: Point(
+                coordinates: Position(
+              position.latitude,
+              position.longitude,
+            )),
+            zoom: 6),
+        MapAnimationOptions(duration: 2000, startDelay: 0));
+  }
+
+  setLocationComponent() async {
+    await mapboxMap?.location.updateSettings(
+      LocationComponentSettings(
+        enabled: true,
+      ),
+    );
   }
 
   @override
   void initState() {
     super.initState();
-    _getCurrentLocation();
   }
 
   @override
   Widget build(BuildContext context) {
+    final state = ref.watch(homeStateNotifierProvider);
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
@@ -100,8 +123,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   style: AppTextStyles.body.copyWith(
                       color: Colors.white, fontStyle: FontStyle.italic),
                 ),
-                TypeAheadField<Trip>(
-                  controller: _startLocationController,
+                TypeAheadField<TripLocation>(
+                  controller: startLocationController,
                   builder: (context, controller, focusNode) => TextField(
                     controller: controller,
                     focusNode: focusNode,
@@ -114,11 +137,35 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                           .copyWith(color: Colors.white.withOpacity(0.6)),
                     ),
                   ),
-                  itemBuilder: (context, trip) => ListTile(
-                    title: Text(trip.startLocName),
+                  itemBuilder: (context, tripLocation) => ListTile(
+                    title: Text(tripLocation.locName),
                   ),
-                  onSelected: (Trip value) {},
-                  suggestionsCallback: (String search) {},
+                  onSelected: (TripLocation tripLocation) {
+                    setState(() {
+                      startLocation = tripLocation;
+
+                      var startLocationAnnotation = mapboxMap?.annotations.createPointAnnotationManager(id: "start_location");
+                      startLocationAnnotation.
+                    });
+                  },
+                  suggestionsCallback: (String search) async {
+                    var places = await placesService.getPlaces(
+                      search,
+                    );
+
+                    if (places.failure != null) {
+                      return null;
+                    }
+
+                    final mapBoxPlaces = places.success;
+                    if (mapBoxPlaces != null) {
+                      return mapBoxPlaces.map((place) {
+                        return convertToTrip(place);
+                      }).toList();
+                    }
+
+                    return null;
+                  },
                 ),
                 const Row(
                   children: [
@@ -138,8 +185,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 const SizedBox(
                   height: 12,
                 ),
-                TypeAheadField<Trip>(
-                  controller: _endLocationController,
+                TypeAheadField<TripLocation>(
+                  controller: endLocationController,
                   builder: (context, controller, focusNode) => TextField(
                     controller: controller,
                     focusNode: focusNode,
@@ -152,11 +199,32 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                           .copyWith(color: Colors.white.withOpacity(0.6)),
                     ),
                   ),
-                  itemBuilder: (context, trip) => ListTile(
-                    title: Text(trip.startLocName),
+                  itemBuilder: (context, tripLocation) => ListTile(
+                    title: Text(tripLocation.locName),
                   ),
-                  onSelected: (Trip value) {},
-                  suggestionsCallback: (String search) {},
+                  onSelected: (TripLocation tripLocation) {
+                    setState(() {
+                      endLocation = tripLocation;
+                    });
+                  },
+                  suggestionsCallback: (String search) async {
+                    var places = await placesService.getPlaces(
+                      search,
+                    );
+
+                    if (places.failure != null) {
+                      return null;
+                    }
+
+                    final mapBoxPlaces = places.success;
+                    if (mapBoxPlaces != null) {
+                      return mapBoxPlaces.map((place) {
+                        return convertToTrip(place);
+                      }).toList();
+                    }
+
+                    return null;
+                  },
                 ),
                 const Row(
                   children: [
@@ -186,19 +254,13 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           key: ValueKey(EnvInfo.mapKey),
           onMapCreated: _onMapCreated,
           cameraOptions: CameraOptions(
-              center: Point.(29.837785, 87.538961),
+              center: Point(
+                  coordinates: Position(
+                6.0033416748046875,
+                43.70908256335716,
+              )),
               zoom: 3.0),
-        )
-
-            // OSMFlutter(
-            //     controller: controller,
-            //     osmOption: const OSMOption(
-            //       userTrackingOption: UserTrackingOption(
-            //         enableTracking: true,
-            //         unFollowUser: false,
-            //       ),
-            //     )),
-            ),
+        )),
         Container(
             padding: const EdgeInsets.all(12),
             color: Colors.blue,
@@ -207,10 +269,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               children: [
                 NavigationButton(
                     onPressed: () {
-                      String startLocation =
-                          _startLocationController.text.trim();
-
-                      if (startLocation.isEmpty) {
+                      if (startLocation == null) {
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                             content: Text(
                           "Please enter start location",
@@ -219,9 +278,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                         return;
                       }
 
-                      String endLocation = _endLocationController.text.trim();
-
-                      if (endLocation.isEmpty) {
+                      if (endLocation == null) {
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                             content: Text(
                           "Please enter destination",
@@ -231,8 +288,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                       }
                       AutoRouter.of(context).push(NavigationRoute(
                           trip: Trip(
-                              startLocName: startLocation,
-                              endLocName: endLocation)));
+                              startLocation: startLocation,
+                              endLocation: endLocation)));
                     },
                     text: 'Navigate'),
                 const SizedBox(
@@ -243,5 +300,13 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             ))
       ]),
     );
+  }
+
+  TripLocation convertToTrip(MapBoxPlace place) {
+    var locationCoordinates = place.geometry?.coordinates;
+    return TripLocation(
+        locName: place.placeName ?? "",
+        latitude: locationCoordinates!.lat,
+        longitude: locationCoordinates.long);
   }
 }

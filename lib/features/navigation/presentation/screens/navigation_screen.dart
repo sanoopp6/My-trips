@@ -37,8 +37,6 @@ class _NavigationScreenState extends ConsumerState<NavigationScreen> {
             color: Colors.blue,
             child:
                 Center(child: NavigationButton(onPressed: () {
-
-
                 }, text: "Save")),
           )
         ]),

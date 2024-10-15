@@ -18,33 +18,21 @@ class TripAdapter extends TypeAdapter<Trip> {
     };
     return Trip(
       id: fields[0] as String?,
-      startLocName: fields[1] as String,
-      startLocLatitude: fields[2] as double,
-      startLocLongitude: fields[3] as double,
-      endLocName: fields[4] as String,
-      endLocLatitude: fields[5] as double,
-      endLocLongitude: fields[6] as double,
+      startLocation: fields[1] as TripLocation?,
+      endLocation: fields[2] as TripLocation?,
     );
   }
 
   @override
   void write(BinaryWriter writer, Trip obj) {
     writer
-      ..writeByte(7)
+      ..writeByte(3)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
-      ..write(obj.startLocName)
+      ..write(obj.startLocation)
       ..writeByte(2)
-      ..write(obj.startLocLatitude)
-      ..writeByte(3)
-      ..write(obj.startLocLongitude)
-      ..writeByte(4)
-      ..write(obj.endLocName)
-      ..writeByte(5)
-      ..write(obj.endLocLatitude)
-      ..writeByte(6)
-      ..write(obj.endLocLongitude);
+      ..write(obj.endLocation);
   }
 
   @override
@@ -64,21 +52,17 @@ class TripAdapter extends TypeAdapter<Trip> {
 
 _$TripImpl _$$TripImplFromJson(Map<String, dynamic> json) => _$TripImpl(
       id: json['id'] as String?,
-      startLocName: json['startLocName'] as String? ?? '',
-      startLocLatitude: (json['startLocLatitude'] as num?)?.toDouble() ?? 0,
-      startLocLongitude: (json['startLocLongitude'] as num?)?.toDouble() ?? 0,
-      endLocName: json['endLocName'] as String? ?? '',
-      endLocLatitude: (json['endLocLatitude'] as num?)?.toDouble() ?? 0,
-      endLocLongitude: (json['endLocLongitude'] as num?)?.toDouble() ?? 0,
+      startLocation: json['startLocation'] == null
+          ? null
+          : TripLocation.fromJson(json['startLocation']),
+      endLocation: json['endLocation'] == null
+          ? null
+          : TripLocation.fromJson(json['endLocation']),
     );
 
 Map<String, dynamic> _$$TripImplToJson(_$TripImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'startLocName': instance.startLocName,
-      'startLocLatitude': instance.startLocLatitude,
-      'startLocLongitude': instance.startLocLongitude,
-      'endLocName': instance.endLocName,
-      'endLocLatitude': instance.endLocLatitude,
-      'endLocLongitude': instance.endLocLongitude,
+      'startLocation': instance.startLocation,
+      'endLocation': instance.endLocation,
     };

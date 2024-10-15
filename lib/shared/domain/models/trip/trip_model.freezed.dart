@@ -23,17 +23,9 @@ mixin _$Trip {
   @HiveField(0)
   String? get id => throw _privateConstructorUsedError;
   @HiveField(1)
-  String get startLocName => throw _privateConstructorUsedError;
+  TripLocation? get startLocation => throw _privateConstructorUsedError;
   @HiveField(2)
-  double get startLocLatitude => throw _privateConstructorUsedError;
-  @HiveField(3)
-  double get startLocLongitude => throw _privateConstructorUsedError;
-  @HiveField(4)
-  String get endLocName => throw _privateConstructorUsedError;
-  @HiveField(5)
-  double get endLocLatitude => throw _privateConstructorUsedError;
-  @HiveField(6)
-  double get endLocLongitude => throw _privateConstructorUsedError;
+  TripLocation? get endLocation => throw _privateConstructorUsedError;
 
   /// Serializes this Trip to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -51,12 +43,11 @@ abstract class $TripCopyWith<$Res> {
   @useResult
   $Res call(
       {@HiveField(0) String? id,
-      @HiveField(1) String startLocName,
-      @HiveField(2) double startLocLatitude,
-      @HiveField(3) double startLocLongitude,
-      @HiveField(4) String endLocName,
-      @HiveField(5) double endLocLatitude,
-      @HiveField(6) double endLocLongitude});
+      @HiveField(1) TripLocation? startLocation,
+      @HiveField(2) TripLocation? endLocation});
+
+  $TripLocationCopyWith<$Res>? get startLocation;
+  $TripLocationCopyWith<$Res>? get endLocation;
 }
 
 /// @nodoc
@@ -75,43 +66,51 @@ class _$TripCopyWithImpl<$Res, $Val extends Trip>
   @override
   $Res call({
     Object? id = freezed,
-    Object? startLocName = null,
-    Object? startLocLatitude = null,
-    Object? startLocLongitude = null,
-    Object? endLocName = null,
-    Object? endLocLatitude = null,
-    Object? endLocLongitude = null,
+    Object? startLocation = freezed,
+    Object? endLocation = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      startLocName: null == startLocName
-          ? _value.startLocName
-          : startLocName // ignore: cast_nullable_to_non_nullable
-              as String,
-      startLocLatitude: null == startLocLatitude
-          ? _value.startLocLatitude
-          : startLocLatitude // ignore: cast_nullable_to_non_nullable
-              as double,
-      startLocLongitude: null == startLocLongitude
-          ? _value.startLocLongitude
-          : startLocLongitude // ignore: cast_nullable_to_non_nullable
-              as double,
-      endLocName: null == endLocName
-          ? _value.endLocName
-          : endLocName // ignore: cast_nullable_to_non_nullable
-              as String,
-      endLocLatitude: null == endLocLatitude
-          ? _value.endLocLatitude
-          : endLocLatitude // ignore: cast_nullable_to_non_nullable
-              as double,
-      endLocLongitude: null == endLocLongitude
-          ? _value.endLocLongitude
-          : endLocLongitude // ignore: cast_nullable_to_non_nullable
-              as double,
+      startLocation: freezed == startLocation
+          ? _value.startLocation
+          : startLocation // ignore: cast_nullable_to_non_nullable
+              as TripLocation?,
+      endLocation: freezed == endLocation
+          ? _value.endLocation
+          : endLocation // ignore: cast_nullable_to_non_nullable
+              as TripLocation?,
     ) as $Val);
+  }
+
+  /// Create a copy of Trip
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $TripLocationCopyWith<$Res>? get startLocation {
+    if (_value.startLocation == null) {
+      return null;
+    }
+
+    return $TripLocationCopyWith<$Res>(_value.startLocation!, (value) {
+      return _then(_value.copyWith(startLocation: value) as $Val);
+    });
+  }
+
+  /// Create a copy of Trip
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $TripLocationCopyWith<$Res>? get endLocation {
+    if (_value.endLocation == null) {
+      return null;
+    }
+
+    return $TripLocationCopyWith<$Res>(_value.endLocation!, (value) {
+      return _then(_value.copyWith(endLocation: value) as $Val);
+    });
   }
 }
 
@@ -124,12 +123,13 @@ abstract class _$$TripImplCopyWith<$Res> implements $TripCopyWith<$Res> {
   @useResult
   $Res call(
       {@HiveField(0) String? id,
-      @HiveField(1) String startLocName,
-      @HiveField(2) double startLocLatitude,
-      @HiveField(3) double startLocLongitude,
-      @HiveField(4) String endLocName,
-      @HiveField(5) double endLocLatitude,
-      @HiveField(6) double endLocLongitude});
+      @HiveField(1) TripLocation? startLocation,
+      @HiveField(2) TripLocation? endLocation});
+
+  @override
+  $TripLocationCopyWith<$Res>? get startLocation;
+  @override
+  $TripLocationCopyWith<$Res>? get endLocation;
 }
 
 /// @nodoc
@@ -145,42 +145,22 @@ class __$$TripImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
-    Object? startLocName = null,
-    Object? startLocLatitude = null,
-    Object? startLocLongitude = null,
-    Object? endLocName = null,
-    Object? endLocLatitude = null,
-    Object? endLocLongitude = null,
+    Object? startLocation = freezed,
+    Object? endLocation = freezed,
   }) {
     return _then(_$TripImpl(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      startLocName: null == startLocName
-          ? _value.startLocName
-          : startLocName // ignore: cast_nullable_to_non_nullable
-              as String,
-      startLocLatitude: null == startLocLatitude
-          ? _value.startLocLatitude
-          : startLocLatitude // ignore: cast_nullable_to_non_nullable
-              as double,
-      startLocLongitude: null == startLocLongitude
-          ? _value.startLocLongitude
-          : startLocLongitude // ignore: cast_nullable_to_non_nullable
-              as double,
-      endLocName: null == endLocName
-          ? _value.endLocName
-          : endLocName // ignore: cast_nullable_to_non_nullable
-              as String,
-      endLocLatitude: null == endLocLatitude
-          ? _value.endLocLatitude
-          : endLocLatitude // ignore: cast_nullable_to_non_nullable
-              as double,
-      endLocLongitude: null == endLocLongitude
-          ? _value.endLocLongitude
-          : endLocLongitude // ignore: cast_nullable_to_non_nullable
-              as double,
+      startLocation: freezed == startLocation
+          ? _value.startLocation
+          : startLocation // ignore: cast_nullable_to_non_nullable
+              as TripLocation?,
+      endLocation: freezed == endLocation
+          ? _value.endLocation
+          : endLocation // ignore: cast_nullable_to_non_nullable
+              as TripLocation?,
     ));
   }
 }
@@ -190,12 +170,8 @@ class __$$TripImplCopyWithImpl<$Res>
 class _$TripImpl implements _Trip {
   _$TripImpl(
       {@HiveField(0) this.id,
-      @HiveField(1) this.startLocName = '',
-      @HiveField(2) this.startLocLatitude = 0,
-      @HiveField(3) this.startLocLongitude = 0,
-      @HiveField(4) this.endLocName = '',
-      @HiveField(5) this.endLocLatitude = 0,
-      @HiveField(6) this.endLocLongitude = 0});
+      @HiveField(1) this.startLocation = null,
+      @HiveField(2) this.endLocation = null});
 
   factory _$TripImpl.fromJson(Map<String, dynamic> json) =>
       _$$TripImplFromJson(json);
@@ -206,31 +182,15 @@ class _$TripImpl implements _Trip {
   @override
   @JsonKey()
   @HiveField(1)
-  final String startLocName;
+  final TripLocation? startLocation;
   @override
   @JsonKey()
   @HiveField(2)
-  final double startLocLatitude;
-  @override
-  @JsonKey()
-  @HiveField(3)
-  final double startLocLongitude;
-  @override
-  @JsonKey()
-  @HiveField(4)
-  final String endLocName;
-  @override
-  @JsonKey()
-  @HiveField(5)
-  final double endLocLatitude;
-  @override
-  @JsonKey()
-  @HiveField(6)
-  final double endLocLongitude;
+  final TripLocation? endLocation;
 
   @override
   String toString() {
-    return 'Trip(id: $id, startLocName: $startLocName, startLocLatitude: $startLocLatitude, startLocLongitude: $startLocLongitude, endLocName: $endLocName, endLocLatitude: $endLocLatitude, endLocLongitude: $endLocLongitude)';
+    return 'Trip(id: $id, startLocation: $startLocation, endLocation: $endLocation)';
   }
 
   @override
@@ -239,31 +199,15 @@ class _$TripImpl implements _Trip {
         (other.runtimeType == runtimeType &&
             other is _$TripImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.startLocName, startLocName) ||
-                other.startLocName == startLocName) &&
-            (identical(other.startLocLatitude, startLocLatitude) ||
-                other.startLocLatitude == startLocLatitude) &&
-            (identical(other.startLocLongitude, startLocLongitude) ||
-                other.startLocLongitude == startLocLongitude) &&
-            (identical(other.endLocName, endLocName) ||
-                other.endLocName == endLocName) &&
-            (identical(other.endLocLatitude, endLocLatitude) ||
-                other.endLocLatitude == endLocLatitude) &&
-            (identical(other.endLocLongitude, endLocLongitude) ||
-                other.endLocLongitude == endLocLongitude));
+            (identical(other.startLocation, startLocation) ||
+                other.startLocation == startLocation) &&
+            (identical(other.endLocation, endLocation) ||
+                other.endLocation == endLocation));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      startLocName,
-      startLocLatitude,
-      startLocLongitude,
-      endLocName,
-      endLocLatitude,
-      endLocLongitude);
+  int get hashCode => Object.hash(runtimeType, id, startLocation, endLocation);
 
   /// Create a copy of Trip
   /// with the given fields replaced by the non-null parameter values.
@@ -284,12 +228,8 @@ class _$TripImpl implements _Trip {
 abstract class _Trip implements Trip {
   factory _Trip(
       {@HiveField(0) final String? id,
-      @HiveField(1) final String startLocName,
-      @HiveField(2) final double startLocLatitude,
-      @HiveField(3) final double startLocLongitude,
-      @HiveField(4) final String endLocName,
-      @HiveField(5) final double endLocLatitude,
-      @HiveField(6) final double endLocLongitude}) = _$TripImpl;
+      @HiveField(1) final TripLocation? startLocation,
+      @HiveField(2) final TripLocation? endLocation}) = _$TripImpl;
 
   factory _Trip.fromJson(Map<String, dynamic> json) = _$TripImpl.fromJson;
 
@@ -298,22 +238,10 @@ abstract class _Trip implements Trip {
   String? get id;
   @override
   @HiveField(1)
-  String get startLocName;
+  TripLocation? get startLocation;
   @override
   @HiveField(2)
-  double get startLocLatitude;
-  @override
-  @HiveField(3)
-  double get startLocLongitude;
-  @override
-  @HiveField(4)
-  String get endLocName;
-  @override
-  @HiveField(5)
-  double get endLocLatitude;
-  @override
-  @HiveField(6)
-  double get endLocLongitude;
+  TripLocation? get endLocation;
 
   /// Create a copy of Trip
   /// with the given fields replaced by the non-null parameter values.
