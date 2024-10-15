@@ -1,10 +1,15 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_osm_plugin/flutter_osm_plugin.dart';
+
+// import 'package:flutter_osm_plugin/flutter_osm_plugin.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
-import 'package:latlong2/latlong.dart';
+import 'package:geolocator/geolocator.dart' as geoLocator;
+
+// import 'package:latlong2/latlong.dart';
+import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart';
 import 'package:mytrips/features/home/presentation/widgets/navigation_button.dart';
+import 'package:mytrips/main/app_env.dart';
 import 'package:mytrips/routes/app_route.gr.dart';
 import 'package:mytrips/shared/domain/models/trip/trip_model.dart';
 import 'package:mytrips/shared/extensions/build_context_extensions.dart';
@@ -24,16 +29,48 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   TextEditingController _startLocationController = TextEditingController();
   TextEditingController _endLocationController = TextEditingController();
 
-  final controller = MapController.withPosition(
-      initPosition: GeoPoint(
-    latitude: 47.4358055,
-    longitude: 8.4737324,
-  ));
   var isLight = true;
+
+  MapboxMap? mapboxMap;
+  geoLocator.Position? _currentPosition;
+
+  _onMapCreated(MapboxMap mapboxMap) {
+    this.mapboxMap = mapboxMap;
+  }
+
+  Future<void> _getCurrentLocation() async {
+    bool serviceEnabled;
+    geoLocator.LocationPermission permission;
+
+    serviceEnabled = await geoLocator.Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      return;
+    }
+
+    permission = await geoLocator.Geolocator.checkPermission();
+    if (permission == geoLocator.LocationPermission.denied) {
+      permission = await geoLocator.Geolocator.requestPermission();
+      if (permission == geoLocator.LocationPermission.denied) {
+        return;
+      }
+    }
+
+    if (permission == geoLocator.LocationPermission.deniedForever) {
+      return;
+    }
+
+    geoLocator.Position position =
+        await geoLocator.Geolocator.getCurrentPosition();
+
+    setState(() {
+      _currentPosition = position;
+    });
+  }
 
   @override
   void initState() {
     super.initState();
+    _getCurrentLocation();
   }
 
   @override
@@ -145,15 +182,23 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           ),
         ),
         Expanded(
-          child: OSMFlutter(
-              controller: controller,
-              osmOption: const OSMOption(
-                userTrackingOption: UserTrackingOption(
-                  enableTracking: true,
-                  unFollowUser: false,
-                ),
-              )),
-        ),
+            child: MapWidget(
+          key: ValueKey(EnvInfo.mapKey),
+          onMapCreated: _onMapCreated,
+          cameraOptions: CameraOptions(
+              center: Point.(29.837785, 87.538961),
+              zoom: 3.0),
+        )
+
+            // OSMFlutter(
+            //     controller: controller,
+            //     osmOption: const OSMOption(
+            //       userTrackingOption: UserTrackingOption(
+            //         enableTracking: true,
+            //         unFollowUser: false,
+            //       ),
+            //     )),
+            ),
         Container(
             padding: const EdgeInsets.all(12),
             color: Colors.blue,
